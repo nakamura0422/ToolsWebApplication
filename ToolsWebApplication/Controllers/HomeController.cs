@@ -17,14 +17,21 @@ namespace ToolsWebApplication.Controllers
 
         public IActionResult Tools()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "さいきょうつーるしゅう";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult SplitApp()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "csvファイル分割";
+
+            return View();
+        }
+
+        public IActionResult InsertApp()
+        {
+            ViewData["Message"] = "insert文生成";
 
             return View();
         }

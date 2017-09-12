@@ -1,5 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Tools";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+
+<div class="title">
+    <h1>各種ツールページへのリンク集</h1>
+    <h2>@ViewData["Message"]</h2>
+</div>
+
+<div class="main-Contents">
+    <div>
+        <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="SplitApp">csvファイル分割機能</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="InsertApp">insert文生成機能</a></li>
+        </ul>
+    </div>
+</div>
+

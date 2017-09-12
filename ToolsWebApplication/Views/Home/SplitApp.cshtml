@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Tools";
+}
+
+<div class="title">
+    <h1>@ViewData["Title"]</h1>
+    <h2>@ViewData["Message"]</h2>
+</div>
+
+<div class="main-Contents">
+    <p>※1行目の1列目をテーブル名、2行目を列名、3行目以降を値として扱います。空白行を挟むと別のテーブルも同時に変換できます。<p>
+    <div class="input">
+
+        <textarea id="input" name="input" placeholder="変換したい文字を入力して下さい">
+            user
+            id,name,age
+            1,太郎,12
+            2,花子,15
+
+            fruits
+            id,name
+            1,いちご
+            2,メロン
+            3,ぶどう
+        </textarea>
+    </div>
+    <button id="execute">変換</button>
+    <div class="output">
+        <textarea id="result" name="result" placeholder="ここに結果が表示されます"></textarea>
+        <button id="download-zip">Download on Zip</button>
+    </div>
+</div>
