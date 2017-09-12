@@ -15,7 +15,7 @@ namespace ToolsWebApplication.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Tools()
         {
             ViewData["Message"] = "Your application description page.";
 
