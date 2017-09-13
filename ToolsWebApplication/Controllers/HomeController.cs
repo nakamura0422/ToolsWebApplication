@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ToolsWebApplication.Models;
+using System.Text;
 
 namespace ToolsWebApplication.Controllers
 {
@@ -27,6 +28,26 @@ namespace ToolsWebApplication.Controllers
             ViewData["Message"] = "csvファイル分割";
 
             return View();
+        }
+
+        /// <summary>
+        /// 分割してなんかにつめてリダイレクトするんかね？
+        /// </summary>
+        /// <param name="csvData"></param>
+        /// <returns></returns>
+        public ActionResult SplitCSV(string[] csvData)
+        {
+            //ファイルを読み込んで必要な部分のみを取得
+            var data = csvData;
+            //.Skip(1)
+            //.Select(x => x.Split(','));
+
+            ViewData["csvData"] = data;
+            //new Split
+            //{
+               
+            //};
+            return RedirectToAction("SplitApp");
         }
 
         public IActionResult InsertApp()

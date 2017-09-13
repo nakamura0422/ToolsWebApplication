@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Tools";
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+@*ファイルをドラックで持ってこれるようにするjs*@
+<script type="text/javascript" src="~/js/droppable.js" asp-append-version="true"></script>
 
 <div class="title">
     <h1>@ViewData["Title"]</h1>
@@ -8,25 +11,25 @@
 </div>
 
 <div class="main-Contents">
-    <p>※1行目の1列目をテーブル名、2行目を列名、3行目以降を値として扱います。空白行を挟むと別のテーブルも同時に変換できます。<p>
+    <p>※1行目の1列目をテーブル名、2行目を列名、3行目以降を値として扱います。空白行を挟むと別のテーブルも同時に変換できます。</p>
+
     <div class="input">
 
-        <textarea id="input" name="input" placeholder="変換したい文字を入力して下さい">
-            user
-            id,name,age
-            1,太郎,12
-            2,花子,15
-
-            fruits
-            id,name
-            1,いちご
-            2,メロン
-            3,ぶどう
-        </textarea>
+        
+        <form asp-action="SplitCSV">
+            <div id="droppable" style="border: gray solid 1em; padding: 2em; ">
+                
+                <h3 type="submit" id="csvData">ファイルをドロップしてください。</h3>
+            </div>
+            <input type="submit" id="csvData" value="変換">
+        </form>
     </div>
-    <button id="execute">変換</button>
+   
     <div class="output">
-        <textarea id="result" name="result" placeholder="ここに結果が表示されます"></textarea>
+        <div class="outputfiles">
+
+        </div>
         <button id="download-zip">Download on Zip</button>
     </div>
 </div>
+

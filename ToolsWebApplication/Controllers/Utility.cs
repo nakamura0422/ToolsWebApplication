@@ -12,7 +12,7 @@ namespace ToolsWebApplication
     public static class Utility
     {
         /// <summary>
-        /// ファイルを書くだしますよ
+        /// ファイルに書く
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="file"></param>
