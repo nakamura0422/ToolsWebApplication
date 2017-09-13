@@ -31,14 +31,15 @@ namespace ToolsWebApplication.Controllers
         }
 
         /// <summary>
+        /// dragoverない
         /// 分割してなんかにつめてリダイレクトするんかね？
         /// </summary>
         /// <param name="csvData"></param>
         /// <returns></returns>
-        public ActionResult SplitCSV(string[] csvData)
+        public ActionResult SplitCSV(string[] droppable)
         {
             //ファイルを読み込んで必要な部分のみを取得
-            var data = csvData;
+            var data = droppable;
             //.Skip(1)
             //.Select(x => x.Split(','));
 
@@ -47,7 +48,7 @@ namespace ToolsWebApplication.Controllers
             //{
                
             //};
-            return RedirectToAction("SplitApp");
+            return View("SplitApp");
         }
 
         public IActionResult InsertApp()

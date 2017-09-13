@@ -14,20 +14,17 @@
     <p>※1行目の1列目をテーブル名、2行目を列名、3行目以降を値として扱います。空白行を挟むと別のテーブルも同時に変換できます。</p>
 
     <div class="input">
-
-        
         <form asp-action="SplitCSV">
             <div id="droppable" style="border: gray solid 1em; padding: 2em; ">
-                
-                <h3 type="submit" id="csvData">ファイルをドロップしてください。</h3>
+                ファイルをドロップしてください。
             </div>
-            <input type="submit" id="csvData" value="変換">
+            <input type="submit" id="ret" name="droppable" value="分割">
         </form>
     </div>
    
     <div class="output">
         <div class="outputfiles">
-
+            @ViewData["csvData"]
         </div>
         <button id="download-zip">Download on Zip</button>
     </div>
