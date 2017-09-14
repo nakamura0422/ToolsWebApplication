@@ -36,19 +36,23 @@ namespace ToolsWebApplication.Controllers
         /// </summary>
         /// <param name="csvData"></param>
         /// <returns></returns>
-        public ActionResult SplitCSV(string[] droppable)
+        public ActionResult SplitCSV(string droppable)
         {
-            //ファイルを読み込んで必要な部分のみを取得
-            var data = droppable;
-            //.Skip(1)
-            //.Select(x => x.Split(','));
+            if(droppable == null)
+            {
+                ViewData["Message"] = "csvが無いかcsvの中身が空ですよ";
+                return View("SplitApp");
+            }
+            else
+            {
+                IEnumerable<string> data = droppable
+                        .Split(",");
 
-            ViewData["csvData"] = data;
-            //new Split
-            //{
-               
-            //};
-            return View("SplitApp");
+                var a = data.Column(3);
+
+                ViewData["csvData"] = a;
+                return View("SplitApp");
+            }
         }
 
         public IActionResult InsertApp()
