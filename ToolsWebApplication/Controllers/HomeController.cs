@@ -48,9 +48,10 @@ namespace ToolsWebApplication.Controllers
                 IEnumerable<string> data = droppable
                         .Split(",");
 
-                var a = data.Column(3);
-
-                ViewData["csvData"] = a;
+                var a = data.Column(3).ToList();
+                //foreach (var aaa in a)
+                //    Console.WriteLine(aaa);
+                //ViewData["ret"]
                 return View("SplitApp");
             }
         }

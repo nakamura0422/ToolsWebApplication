@@ -15,14 +15,18 @@
 
     <div class="input">
         <form asp-action="SplitCSV">
-            <input type="text" id="droppable" name="droppable" value="" placeholder="ファイルをドロップしてください。" style="border: gray solid 1em; padding: 2em; width:100%;">         
+            <input type="text" id="droppable" name="droppable" value="" placeholder="ファイルをドロップしてください。" style="border: gray solid 1em; padding: 2em; width:100%;">
             <input type="submit" value="送信">
         </form>
     </div>
 
     <div class="output">
         <div class="outputfiles">
-            @ViewData["csvData"]
+            @*<% foreach(var a in ViewData["ret"]) { %>
+            <div>
+                <%:a%>
+            </div>
+            <% }*@ 
         </div>
         <button id="download-zip">Download on Zip</button>
     </div>

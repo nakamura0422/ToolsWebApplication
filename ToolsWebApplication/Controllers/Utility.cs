@@ -75,23 +75,45 @@ namespace ToolsWebApplication
         /// <param name="datas"></param>
         /// <param name="columnCount"></param>
         /// <returns></returns>
-        public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas , int columnCount)
+        public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas, int columnCount)
+            //public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas, int columnCount, int takeColumn)
         {
-            // データが無いとき
+            //---R.I.P---
+            //// データが無いとき
+            //if (datas == null)
+            //    throw new ArgumentNullException();
+
+            //// 探索する列が無い時
+            //if (columnCount == 0)
+            //    yield break;
+
+            //while (datas.Any())
+            //{
+            //    yield return datas.Take(1);
+            //    columnCount--;
+            //    datas.Skip(columnCount).Column(columnCount);
+            //}
+            //Column(datas, columnCount);
+            //------
+            //---R.I.P--- 一列目の列挙しか生成できない
             if (datas == null)
                 throw new ArgumentNullException();
 
-            // 探索する列が無い時
-            if (columnCount == 0)
+            // 要素が無いとbreak
+            if (!datas.Any())
                 yield break;
 
-            while (datas.Any())
-            {
-                yield return datas.Take(1);
-                columnCount--;
-                datas = datas.Skip(columnCount);
-            }
-            Column(datas, columnCount);
-        } 
+            // value分だけをyield return
+            yield return datas.Take(1);
+
+            foreach (var s in datas.Skip(columnCount).Column(columnCount))
+                yield return s;
+            //------
+
+            //if (datas == null)
+            //    throw new ArgumentNullException();
+
+
+        }
     }
 }

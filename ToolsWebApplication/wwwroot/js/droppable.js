@@ -29,10 +29,11 @@ $(function () {
         var fileReader = new FileReader();
         fileReader.onload = function (event) {
             // event.target.result に読み込んだファイルの内容が入っています.
-            // filename
+            // filename　でファイルの名前もとれます.
             $("#droppable").val(event.target.result.split("\n"));
         }
-        // テキストはs-jisとして扱います.文字コードが異なると文字化けします.
+        // テキストはs-jisとして扱います.
+        // 文字コードが異なると文字化けします.
         fileReader.readAsText(file, "shift-jis");
         // デフォルトの処理をキャンセルします.
         cancelEvent(event);
