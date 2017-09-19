@@ -4,6 +4,8 @@ namespace ToolsWebApplication.Models
 {
     public class Split
     {
-        public string Test { get; set; }
+        //    public long Id { get; set; }
+
+        public string[] Text { get; set; }
     }
 }

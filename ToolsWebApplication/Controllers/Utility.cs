@@ -58,11 +58,11 @@ namespace ToolsWebApplication
         /// 縦列でもってくる
         /// 
         /// ---input
-        /// id
+        /// 〇id
         /// name
-        /// 1
+        /// 〇1
         /// A
-        /// 2
+        /// 〇2
         /// B
         /// 
         /// ---output
@@ -75,8 +75,8 @@ namespace ToolsWebApplication
         /// <param name="datas"></param>
         /// <param name="columnCount"></param>
         /// <returns></returns>
-        public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas, int columnCount)
-            //public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas, int columnCount, int takeColumn)
+        public static IEnumerable<IEnumerable<T>> OneColumnSerecter<T>(this IEnumerable<T> datas, int columnCount)
+        //public static IEnumerable<IEnumerable<T>> Column<T>(this IEnumerable<T> datas, int columnCount, int takeColumn)
         {
             //---R.I.P---
             //// データが無いとき
@@ -106,14 +106,39 @@ namespace ToolsWebApplication
             // value分だけをyield return
             yield return datas.Take(1);
 
-            foreach (var s in datas.Skip(columnCount).Column(columnCount))
+            foreach (var s in datas.Skip(columnCount).OneColumnSerecter(columnCount))
                 yield return s;
             //------
 
             //if (datas == null)
             //    throw new ArgumentNullException();
 
+            //for ()
 
         }
+
+        /// <summary>
+        /// 1列バイバイされた列挙になる
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="datas"></param>
+        /// <param name="columnCount"></param>
+        /// <returns></returns>
+        public static IEnumerable<IEnumerable<T>> OneArrayDeletion<T>(this IEnumerable<T> datas, int columnCount)
+        {
+            if (datas == null)
+                throw new ArgumentNullException();
+
+            datas.Skip(1);
+            columnCount--;
+
+            if (datas.Any())
+            {
+                yield return datas.Take(columnCount);
+                datas.Skip(1);
+            }
+        }
+       
     }
+
 }

@@ -43,13 +43,3 @@ $(function () {
     // ドロップ時のイベントハンドラを設定します.
     droppable.bind("drop", handleDroppedFile);
 });
-
-// CSVテキストを２次元配列にする 
-$(function toArray(csv) {
-    var result = new Array();
-    var rows = csv.split("\n");
-    $(rows).each(function () {
-        result.push(this.split(","));
-    });
-    return result;
-});

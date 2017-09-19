@@ -1,6 +1,8 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Tools";
 }
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 @*ファイルをドラックで持ってこれるようにするjs*@
 <script type="text/javascript" src="~/js/droppable.js" asp-append-version="true"></script>
@@ -22,11 +24,14 @@
 
     <div class="output">
         <div class="outputfiles">
-            @*<% foreach(var a in ViewData["ret"]) { %>
-            <div>
-                <%:a%>
-            </div>
-            <% }*@ 
+            @{
+                var y = ViewBag.List as List<string>;
+                foreach (var x in y)
+                {
+                    @x
+                    <br>
+                }
+            }
         </div>
         <button id="download-zip">Download on Zip</button>
     </div>
