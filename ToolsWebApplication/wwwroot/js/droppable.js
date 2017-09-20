@@ -39,7 +39,6 @@ $(function () {
         cancelEvent(event);
         return false;
     }
-
     // ドロップ時のイベントハンドラを設定します.
     droppable.bind("drop", handleDroppedFile);
 });

@@ -1,11 +1,11 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Tools";
 }
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 @*ファイルをドラックで持ってこれるようにするjs*@
 <script type="text/javascript" src="~/js/droppable.js" asp-append-version="true"></script>
+@*パラメータ付けるイメージで書いたjs*@
+<script type="text/javascript" src="~/js/addParameter.js" asp-append-version="true"></script>
 
 <div class="title">
     <h1>@ViewData["Title"]</h1>
@@ -13,12 +13,13 @@
 </div>
 
 <div class="main-Contents">
-    <p>※1行目の1列目をテーブル名、2行目を列名、3行目以降を値として扱います。空白行を挟むと別のテーブルも同時に変換できます。</p>
+    <p>※とりあえずCSVを3分割してくれるみたいだよ。</p>
+    <p>※ファイルが大きすぎると分割できないよ、致命的だね。</p>
 
     <div class="input">
         <form asp-action="SplitCSV">
             <input type="text" id="droppable" name="droppable" value="" placeholder="ファイルをドロップしてください。" style="border: gray solid 1em; padding: 2em; width:100%;">
-            <input type="submit" value="送信">
+            <input type="submit" value="分割生成">
         </form>
     </div>
 
@@ -26,14 +27,20 @@
         <div class="outputfiles">
             @{
                 var y = ViewBag.List as List<string>;
+                int i = 0;
                 foreach (var x in y)
                 {
+                    if(y.Count() / 3 == i)
+                    {
+                        i = 0;
+                        <br>
+                    }
                     @x
                     <br>
+                    i++;
                 }
             }
         </div>
-        <button id="download-zip">Download on Zip</button>
+        <button class="downloadBtn" id="/Download">Download on Zip</button>
     </div>
 </div>
-
