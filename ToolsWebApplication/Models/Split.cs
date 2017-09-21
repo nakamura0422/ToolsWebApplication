@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ToolsWebApplication.Models
 {
@@ -12,6 +14,7 @@ namespace ToolsWebApplication.Models
 
         // –{‘Ì 
         // –¼‘O‚Í‚È‚ñ‚Ä•t‚¯‚Ä‚¢‚¢‚©‚í‚©‚ç‚ñ‚©‚Á‚½
-        public string[] Text { get; set; }
+        [Required]
+        public IEnumerable<IEnumerable<string>> Text { get; set; }
     }
 }

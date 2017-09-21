@@ -12,11 +12,25 @@ namespace ToolsWebApplication.Controllers
 {
     public class HomeController : Controller
     {
+        // m付けた方がええか？
+        Split split = new Split();
+        List<string> lst = new List<string>();
+
+
+        /// <summary>
+        /// ホーム
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// ツールがいっぱいあるとこ
+        /// </summary>
+        /// <returns></returns>
+        [Route("Home/Tools")]
         public IActionResult Tools()
         {
             ViewData["Message"] = "さいきょうつーるしゅう";
@@ -24,11 +38,16 @@ namespace ToolsWebApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// csv分割
+        /// </summary>
+        /// <returns></returns>
+        [Route("Home/SplitApp")]
         public IActionResult SplitApp()
         {
             ViewData["Message"] = "csvファイル分割";
 
-            var lst = new List<string>();
+            
             ViewBag.List = lst;
 
             return View();
@@ -45,9 +64,6 @@ namespace ToolsWebApplication.Controllers
             if (droppable == null)
             {
                 ViewData["Message"] = "csvが無いかcsvの中身が空ですよ";
-                // インスタンス生成しないと怒られた…
-                // メンバにした方がいいかも
-                var lst = new List<string>();
                 ViewBag.List = lst;
                 return View("SplitApp");
             }
@@ -71,14 +87,11 @@ namespace ToolsWebApplication.Controllers
                                 .Select(x => x);
 
                 // モデルに詰めてみる
-                Split split = new Split();
-                foreach (var a in ret.SelectMany(x => x.SelectMany(y => y)))
-                    split.Text = a.ToArray();
+                split.Text = ret.SelectMany(x => x.SelectMany(y => y));
 
 
                 // ViewBagに詰めてみる
                 // ほんとはIEnumerable<IEnumerable<string>>で送りたかった（　＾ω＾）・・・
-                var lst = new List<string>();
                 foreach (var a in ret.SelectMany(x => x.SelectMany(y => y)))
                     foreach (var b in a)
                         lst.Add(b);
@@ -110,26 +123,42 @@ namespace ToolsWebApplication.Controllers
         }
 
         /// <summary>
-        /// /Downloadにアクセスしたときにモデルのデータを処理してzipをダウンロードさせる
+        /// /Downloadにアクセスしたときに今のモデルのデータをファイルで吐き出してzipをダウンロードさせる
         /// </summary>
         /// <returns></returns>
-        [Route("Download")]
+        [Route("Home/SplitCSV/Download")]
         public ActionResult Download()
         {
-            // モデルのインスタンス生成
-            Split split = new Split();
             // モデルからget
             var data = split.Text;
-            // fileNameの設定
-            var fileName = string.Format("{0:yyyyMMdd}.zip", DateTime.Now);
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream, Encoding.GetEncoding("Defalt"));
 
-            //return File(GetData(), "text/csv", fileName);
-            return null;
+            if (data == null)
+            {
+                ViewBag.List = lst;
+                ViewData["Message"] = "モデルの中になんもないよ";
+                  return View("SplitApp");
+            }
+            else
+            {
+                ViewBag.List = lst;
+                // fileNameの設定
+                var fileName = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+                using (var file = new FileStream($"{fileName}.txt", FileMode.Create))
+                using (var writer = new StreamWriter(file, Encoding.UTF8))
+                {
+                    writer.Write("あいうえお");
+                }
+
+                //return File(GetData(), "text/csv", fileName);
+                return View("SplitApp");
+            }
         }
 
-
+        /// <summary>
+        /// インサート文生成
+        /// </summary>
+        /// <returns></returns>
         public IActionResult InsertApp()
         {
             ViewData["Message"] = "insert文生成";
@@ -139,7 +168,6 @@ namespace ToolsWebApplication.Controllers
 
         /// <summary>
         /// デフォルトでついてきたやつ
-        /// 
         /// </summary>
         /// <returns></returns>
         public IActionResult Error()
