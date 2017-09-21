@@ -15,6 +15,6 @@ namespace ToolsWebApplication.Models
         // –{‘Ì 
         // –¼‘O‚Í‚È‚ñ‚Ä•t‚¯‚Ä‚¢‚¢‚©‚í‚©‚ç‚ñ‚©‚Á‚½
         [Required]
-        public IEnumerable<IEnumerable<string>> Text { get; set; }
+        public IEnumerable<string> Text { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace ToolsWebApplication.Controllers
     public class HomeController : Controller
     {
         // m付けた方がええか？
-        Split split = new Split();
-        List<string> lst = new List<string>();
+        private Split split = new Split();
+        private List<string> lst = new List<string>();
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ToolsWebApplication.Controllers
         {
             ViewData["Message"] = "csvファイル分割";
 
-            
+
             ViewBag.List = lst;
 
             return View();
@@ -87,7 +87,7 @@ namespace ToolsWebApplication.Controllers
                                 .Select(x => x);
 
                 // モデルに詰めてみる
-                split.Text = ret.SelectMany(x => x.SelectMany(y => y));
+                //split.Text = ret.SelectMany(x => x.SelectMany(y => y));
 
 
                 // ViewBagに詰めてみる
@@ -136,7 +136,7 @@ namespace ToolsWebApplication.Controllers
             {
                 ViewBag.List = lst;
                 ViewData["Message"] = "モデルの中になんもないよ";
-                  return View("SplitApp");
+                return View("SplitApp");
             }
             else
             {
