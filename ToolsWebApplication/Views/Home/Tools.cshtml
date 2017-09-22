@@ -12,7 +12,24 @@
         <ul>
             <li><a asp-area="" asp-controller="Home" asp-action="SplitApp">csvファイル分割機能</a></li>
             <li><a asp-area="" asp-controller="Home" asp-action="InsertApp">insert文生成機能</a></li>
+
         </ul>
     </div>
+    <input type="button" onclick="register()" value="Click this">
 </div>
+
+@*プッシュ通知のイベントハンドラjs*@
+<script>
+    function register() {
+        navigator.serviceWorker.register("./serviceWorker", { scope: "./scope/" })
+            .then(function (registration) {
+                alert("OK. Click test");
+                console.log(registration);
+            })
+            .catch(function (error) {
+                alert("error");
+                console.log(error);
+            });
+    }
+</script>
 

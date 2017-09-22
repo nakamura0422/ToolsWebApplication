@@ -1,0 +1,24 @@
+//名前	説明
+// name	アプリケーション名
+// short_name	ホーム画面で表示される省略名
+// icons	アイコン
+// start_url	アプリを開いたときのURL
+// display	表示形式
+// theme_color	テーマカラー
+{
+  "name": "ToolsWebApplication",
+  "short_name": "Tools",
+  "icons": [
+    {
+      "src": "images/icon.jpg",
+      "sizes": "300x300",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": "Home/Tools",
+  "display": "ToolLinks",
+  "background_color": "#3E4EB8",
+  "theme_color": "#2F3BA2",
+  // Google Developers Consoleから取得するプロジェクト番号
+  "gcm_sender_id": "71837193935"
+}
